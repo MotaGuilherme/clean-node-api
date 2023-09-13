@@ -19,7 +19,7 @@ describe('SingUp Controller', () => {
     })
 
     // @ts-ignore
-    test('Should return 400 if no name is provided', () => {
+    test('Should return 400 if no email is provided', () => {
         const sut = new SingUpController()
         const httpRequest = {
             body: {
@@ -34,5 +34,19 @@ describe('SingUp Controller', () => {
 
     })
 
+    // @ts-ignore
+    test('Should return 400 if no password is provided', () => {
+        const sut = new SingUpController()
+        const httpRequest = {
+            body: {
+                name: 'any_name',
+                email: 'any_email@mail.com',
+                passwordConfirmation: 'any_password'
+            }
+        }
+        const httpResponse = sut.handle(httpRequest)
+        expect(httpResponse.statusCode).toBe(400)
+        expect(httpResponse.body).toEqual(new MissingParamError('password'))
 
+    })
 })
