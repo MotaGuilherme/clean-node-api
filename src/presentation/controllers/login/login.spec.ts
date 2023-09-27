@@ -1,12 +1,23 @@
-import {LoginController} from "./login";
-import {badRequest} from "../../helpers/http-helper";
-import {MissingParamError} from "../../errors";
+import { LoginController } from "./login";
+import { badRequest } from "../../helpers/http-helper";
+import { MissingParamError } from "../../errors";
+
+
+interface SutTypes {
+    sut: LoginController
+}
+const makeSut = (): SutTypes => {
+    const sut = new LoginController()
+    return {
+        sut
+    }
+}
 
 describe('Login Controller', () => {
 
     // @ts-ignore
     test('Should return if no email id provided ', async () => {
-        const sut = new LoginController()
+        const {sut} = makeSut()
         const httpResquest = {
             body: {
                 password: 'any_password'
@@ -18,7 +29,7 @@ describe('Login Controller', () => {
 
     // @ts-ignore
     test('Should return if no password id provided ', async () => {
-        const sut = new LoginController()
+        const {sut} = makeSut()
         const httpResquest = {
             body: {
                 email: 'any_email@mail.com'
