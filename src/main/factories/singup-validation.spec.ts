@@ -24,7 +24,7 @@ describe('SingUpValidation factory', () => {
     test('Should call ValidationComposite with all validations', () => {
         makeSingUpValidation()
         const validations: Validation[] = []
-        for (const field of ['name', 'email', 'password', 'password_confirmation']) {
+        for (const field of ['name', 'email', 'password', 'passwordConfirmation']) {
             validations.push(new RequiredFieldValidation(field))
         }
         validations.push(new CompareFieldsValidation('password', 'passwordConfirmation'))
