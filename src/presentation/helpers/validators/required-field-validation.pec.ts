@@ -1,18 +1,22 @@
-import {RequiredFieldValidation} from "./required-field-validation";
-import {MissingParamError} from "../../errors";
+import { RequiredFieldValidation } from "./required-field-validation";
+import { MissingParamError } from "../../errors";
+
+const makeSut = (): RequiredFieldValidation => {
+    return new RequiredFieldValidation('field')
+}
 
 describe('RequiredField Validation', () => {
 
     // @ts-ignore
     test('Should return a MissingParamError if validation fails', () => {
-        const sut = new RequiredFieldValidation('field')
+        const sut = makeSut()
         const error = sut.validate({ name: 'any_name'})
         expect(error).toEqual(new MissingParamError('field'))
     })
 
     // @ts-ignore
     test('Should not return if validation succeeds', () => {
-        const sut = new RequiredFieldValidation('field')
+        const sut = makeSut()
         const error = sut.validate({ name: 'any_name'})
         expect(error).toBeFalsy()
     })
