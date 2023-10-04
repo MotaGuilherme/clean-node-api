@@ -11,5 +11,4 @@ export class DbAuthentication implements Authentication {
         await this.loadAccountByEmailRepository.load(authentication.email)
         return null
     }
-
 }
