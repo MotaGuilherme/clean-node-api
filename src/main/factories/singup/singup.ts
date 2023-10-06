@@ -1,6 +1,6 @@
 import { SingUpController } from "../../../presentation/controllers/singup/singup";
 import { DbAddAccount } from "../../../data/usecases/addaccount/db-add-account";
-import { BcryptAdapter } from "../../../infra/criptography/bcrypt-adapter";
+import { BcryptAdapter } from "../../../infra/criptography/bcrypter-adapter/bcrypt-adapter";
 import { AccountMongoRepository } from "../../../infra/db/mongodb/account-repository/account";
 import { Controller } from "../../../presentation/protocols";
 import { LogControllerDecorator } from "../../decorator/logs";
