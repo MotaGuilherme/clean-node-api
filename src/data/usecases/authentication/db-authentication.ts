@@ -9,15 +9,11 @@ import {
 
 
 export class DbAuthentication implements Authentication {
-    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
-    private readonly hashComparer: HashComparer
-    private readonly encrypter: Encrypter
-    private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
 
-    constructor(loadAccountByEmailRepository: LoadAccountByEmailRepository,
-                hashComparer: HashComparer,
-                encrypter: Encrypter,
-                updateAccessTokenRepository: UpdateAccessTokenRepository) {
+    constructor(private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository,
+                private readonly hashComparer: HashComparer,
+                private readonly encrypter: Encrypter,
+                private readonly updateAccessTokenRepository: UpdateAccessTokenRepository) {
         this.loadAccountByEmailRepository = loadAccountByEmailRepository
         this.hashComparer = hashComparer
         this.encrypter = encrypter

@@ -2,10 +2,8 @@ import { HttpRequest, HttpResponse, Controller, AddAccount, Validation } from '.
 import { badRequest, serverError, ok } from "../../helpers/http/http-helper";
 
 export class SingUpController implements Controller {
-    private readonly addAccount: AddAccount
-    private readonly validation: Validation
 
-    constructor(addAccount: AddAccount, validation: Validation) {
+    constructor(private readonly addAccount: AddAccount, private readonly validation: Validation) {
         this.addAccount = addAccount
         this.validation = validation
     }
