@@ -1,11 +1,11 @@
-import { SingUpController } from "../../../presentation/controllers/singup/singup";
+import { SingUpController } from "../../../presentation/controllers/singup/singup-controller";
 import { DbAddAccount } from "../../../data/usecases/addaccount/db-add-account";
 import { BcryptAdapter } from "../../../infra/criptography/bcrypter-adapter/bcrypt-adapter";
-import { AccountMongoRepository } from "../../../infra/db/mongodb/account-repository/account";
+import { AccountMongoRepository } from "../../../infra/db/mongodb/account/account-mongo-repository";
 import { Controller } from "../../../presentation/protocols";
-import { LogControllerDecorator } from "../../decorator/logs";
-import { LogMongoRepository } from "../../../infra/db/mongodb/log-repository/log";
-import { makeSingUpValidation } from "./singup-validation";
+import { LogControllerDecorator } from "../../decorator/log-controller-decorator";
+import { LogMongoRepository } from "../../../infra/db/mongodb/log/log-mongo-repository";
+import { makeSingUpValidation } from "./singup-factory";
 
 
 
