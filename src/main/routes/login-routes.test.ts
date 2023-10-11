@@ -25,7 +25,7 @@ describe('SingUp Routes', () => {
     describe('POST /signup', () =>  {
 
     // @ts-ignore
-    test('Should return 200 on signup', async () => {
+    test('Should return 200 on login', async () => {
         const password = await hash('123', 12)
         await accountCollection.insertOne({
             name: 'name',
@@ -33,12 +33,22 @@ describe('SingUp Routes', () => {
             password
         })
         await request(app)
-            .post('/api/signup')
+            .post('/api/login')
             .send({
                 email: 'teste@gmail.com',
                 password: '123',
             })
             .expect(200)
     })
+        // @ts-ignore
+        test('Should return 401 on login', async () => {
+            await request(app)
+                .post('/api/signup')
+                .send({
+                    email: 'teste@gmail.com',
+                    password: '123',
+                })
+                .expect(401)
+        })
 })
 })
