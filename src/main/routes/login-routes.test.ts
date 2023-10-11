@@ -17,10 +17,12 @@ describe('SingUp Routes', () => {
         await accountCollection.deleteMany()
     })
 
+    describe('POST /singup', () =>  {
+
     // @ts-ignore
-    test('Should return an account on success', async () => {
+    test('Should return 200 on signup', async () => {
         await request(app)
-            .post('/api/singup')
+            .post('/api/signup')
             .send({
                 name: 'Teste',
                 email: 'teste@gmail.com',
@@ -29,4 +31,5 @@ describe('SingUp Routes', () => {
             })
             .expect(200)
     })
+})
 })
