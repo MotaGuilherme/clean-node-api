@@ -1,6 +1,11 @@
 import request from 'supertest'
 import app from "../config/app";
 import { MongoHelper } from "../../infra/db/mongodb/helpers/mongo-helper";
+import { Collection } from "mongodb";
+import { hash } from "bcrypt";
+
+
+let accountCollection: Collection
 
 describe('SingUp Routes', () => {
 
@@ -13,21 +18,25 @@ describe('SingUp Routes', () => {
     })
 
     beforeEach(async ()  => {
-        const accountCollection = await MongoHelper.getCollection('accounts')
+        accountCollection = await MongoHelper.getCollection('accounts')
         await accountCollection.deleteMany()
     })
 
-    describe('POST /singup', () =>  {
+    describe('POST /signup', () =>  {
 
     // @ts-ignore
     test('Should return 200 on signup', async () => {
+        const password = await hash('123', 12)
+        await accountCollection.insertOne({
+            name: 'name',
+            email: 'email@mail.com',
+            password
+        })
         await request(app)
             .post('/api/signup')
             .send({
-                name: 'Teste',
                 email: 'teste@gmail.com',
                 password: '123',
-                passwordConfirmation: '123'
             })
             .expect(200)
     })
